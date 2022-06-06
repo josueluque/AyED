@@ -7,7 +7,7 @@ using namespace std;
 */
 int main()
 {
-    int aprobados, desaprobados, ausentes, totalDeAlumnos, porcentajeAprobados, porcentajeDesaprobados, porcentajeAusentes; // Se hacen en float para que sean lo mas precisos posibles
+    int aprobados, desaprobados, ausentes, totalDeAlumnos, porcentajeAprobados, porcentajeDesaprobados, porcentajeAusentes;
     cout << "Cuantos alumnos aprobaron? ";
     cin >> aprobados;
     cout << "Cuantos alumnos desaprobaron?: ";

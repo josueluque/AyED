@@ -4,7 +4,7 @@ using namespace std;
 /*
     5) Desarrollar una función que dados n y m devuelva el combinatorio de m tomados de a n.
     Usar función punto 2
-    Combiación: m!/n!(m-n)!
+    Combinación: m!/n!(m-n)!
 */
 int combinatorio(int m, int n);
 int factorial(int n);
