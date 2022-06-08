@@ -4,8 +4,7 @@
 
 using namespace std;
 
-// Ingresar 5 números  enteros e
-// informar cuántos de ellos son mayores a su promedio
+// Ingresar 5 números  enteros e informar cuántos de ellos son mayores a su promedio
 
 int main()
 {
