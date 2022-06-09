@@ -2,12 +2,14 @@
 
 using namespace std;
 
-// Dados los legajos y sueldos de los empleados de una empresa que,
-// como máximo tiene 100  empleados,
-// se pide mostrar los legajos de los empleados que tienen el mayor sueldo.
-// El ingreso de datos finaliza con legajo cero.
-// 2)Los legajos son números no correlativos de 4 dígitos (entre 1000 y 9999)
-// Además mostrar legajo y sueldo de cada empleado
+/*
+    Dados los legajos y sueldos de los empleados de una empresa que,
+    como máximo tiene 100  empleados,
+    se pide mostrar los legajos de los empleados que tienen el mayor sueldo.
+    El ingreso de datos finaliza con legajo cero.
+    2)Los legajos son números no correlativos de 4 dígitos (entre 1000 y 9999)
+    Además mostrar legajo y sueldo de cada empleado
+*/
 
 int cargarDatos(int vs[], int vl[], int cme);
 int mayor(int vs[], int ce);
