@@ -1,36 +1,45 @@
 #include <iostream>
-#define TAM 4
 
 using namespace std;
 /*
     2) Hacer un algoritmo que lea 40 números y los muestre en orden inverso.
 */
-// COMPLETAR
 
-int ingresarNumero(int v[], int ce);
-int invertirValores(int v[], int ce, int oi);
+void ingresarNumero(int v[], int ce);
+void invertirValores(int v[], int ce, int vi[]);
 
 int main()
 {
-    int numeros[TAM], ordenInverso;
+    int TAM;
+    cout << "Ingrese cuántos números va a ingresar: ";
+    cin >> TAM;
+
+    int numeros[TAM], ordenInverso[TAM];
     ingresarNumero(numeros, TAM);
-    ordenInverso = invertirValores(numeros, TAM, ordenInverso);
-
-    cout << "Los valores ingresados ivertidamente: " << ordenInverso << endl;
-
+    invertirValores(numeros, TAM, ordenInverso);
     return 0;
 }
 
-int ingresarNumero(int v[], int ce)
+void ingresarNumero(int v[], int ce)
 {
     for (int i = 0; i < ce; i++)
     {
         cout << "Ingrese un número (vamos por el " << i + 1 << ") :" << endl;
         cin >> v[i];
-        cout << "----------------" << endl;
+        cout << " " << endl;
     }
 }
 
-int invertirValores(int v[], int ce, int oi)
+void invertirValores(int v[], int ce, int vi[])
 {
+    for (int i = 0; i < ce; i++)
+    {
+        vi[i] = v[ce - (i + 1)];
+    }
+
+    cout << "El orden inverso de los número ingresados es: " << endl;
+    for (int j = 0; j < ce; j++)
+    {
+        cout << "> " << vi[j] << endl;
+    }
 }
