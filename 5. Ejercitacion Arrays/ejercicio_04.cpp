@@ -11,16 +11,77 @@ using namespace std;
     Analizar y describir los cambios necesarios para resolver el mismo problema considerando a lo
     sumo 50 valores enteros.
 */
-int ingresarNota(int v[], int ce);
-int calcularNotaMayor(int v[], int ce, int nm);
+int ingresarNumeros(int v[], int ce);
+void mostrarValores(int v[], int ce);
+void calcularMayor(int v[], int ce);
+void calcularMenor(int v[], int ce);
 
 int main()
 {
-    int nota[TAM], notaMaxima = 0;
-    ingresarNota(nota, TAM);
-    notaMaxima = calcularNotaMayor(nota, TAM, notaMaxima);
-
-    cout << "La nota maxima es : " << notaMaxima << endl;
+    int valoresEnt[TAM];
+    ingresarNumeros(valoresEnt, TAM);
+    mostrarValores(valoresEnt, TAM);
+    calcularMayor(valoresEnt, TAM);
+    calcularMenor(valoresEnt, TAM);
 
     return 0;
+}
+
+int ingresarNumeros(int v[], int ce)
+{
+    for (int i = 0; i < ce; i++)
+    {
+        cout << "Ingrese un número (vamos por el (" << i + 1 << ")) :";
+        cin >> v[i];
+    }
+    cout << " " << endl;
+}
+
+void mostrarValores(int v[], int ce)
+{
+    cout << "Valores ingresados" << endl;
+    for (int j = 0; j < ce; j++)
+    {
+        cout << v[j] << " ";
+    }
+}
+
+void calcularMayor(int v[], int ce)
+{
+    int nmayor;
+    int nMayorPos;
+    for (int j = 0; j < ce; j++)
+    {
+        if (j == 0)
+        {
+            nmayor = v[j];
+            nMayorPos = j + 1;
+        }
+        if (v[j] > nmayor)
+        {
+            nmayor = v[j];
+            nMayorPos = j + 1;
+        }
+    }
+    cout << "Mayor valor: " << nmayor << "    se encuentra en la posicón: " << nMayorPos << endl;
+}
+
+void calcularMenor(int v[], int ce)
+{
+    int nmenor;
+    int nMenorsPos;
+    for (int j = 0; j < ce; j++)
+    {
+        if (j == 0)
+        {
+            nmenor = v[j];
+            nMenorsPos = j + 1;
+        }
+        if (v[j] < nmenor)
+        {
+            nmenor = v[j];
+            nMenorsPos = j + 1;
+        }
+    }
+    cout << "Menor valor: " << nmenor << "    se encuetra en la posición: " << nMenorsPos << endl;
 }
