@@ -3,7 +3,6 @@
 *
 !/**/
 !*.*
-*.exe
-*.json
+.exe
+.json
 .vscode/
-.vscode.windows/
