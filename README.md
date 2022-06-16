@@ -14,7 +14,7 @@ Ejercicios resueltos de la asignatura Algoritmos y Estructura de Datos - UTN.
 
 ## Instalación :wrench:
 
-> Nota: Los ejercicios estan desarrollados en el lengueaje C++. Por lo tanto, para ejecutarlo debe tener instalado un compilador para el mismo.
+> Nota: Los ejercicios estan desarrollados en el lenguaje C++. Por lo tanto, para ejecutarlo debe tener instalado un compilador para el mismo.
 >
 > - Para instalar el compilador, puede desargarlo [aqui](https://youtu.be/amDcj6Od1f8).
 >
