@@ -23,6 +23,7 @@ void mostrar(Empleado e);
 Empleado ingresarEmple();
 void ingresarEmple(Empleado &emple);
 float sueldoNeto(int sueldoBasico);
+int antiguedad(Fecha fecha);
 
 int main()
 {
