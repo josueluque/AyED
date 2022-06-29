@@ -1,5 +1,5 @@
 #include <iostream>
-#define TAM 3
+#define TAM 3 // Definimos cantidad de empleados (Tambien se podria desarrollar una función que pregunte la cantidad que se quiere ingresar)
 
 using namespace std;
 
@@ -37,9 +37,11 @@ int main()
 
 void mostrar(Empleado e)
 {
-    cout << e.nroLeg << "-" << e.nombre << "-" << e.sueldo << endl;
+    cout << "Legajo: " << e.nroLeg << " -   Nombre: " << e.nombre << " -    Sueldo: " << e.sueldo << endl;
 }
 
+// También se podrian utilizar para el ingreso de datos de empleados
+/*
 Empleado ingresarEmple()
 {
     Empleado emp;
@@ -52,6 +54,7 @@ Empleado ingresarEmple()
 
     return emp;
 }
+*/
 void ingresarEmple(Empleado &emp)
 {
     cout << "Nro Legajo ";
