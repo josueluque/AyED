@@ -82,6 +82,11 @@ void burbujeo(int v[], unsigned t)
 
 */
 
+/*
+    Para el metodo por burbujeo PRIMERO EL ARRAY DEBE ESTAR ORDENADO
+    La busqueda binaria busca la posición del valor a partir de comparar el valor medio con el valor buscado
+    e ir viendo de que lado se encuetra.
+*/
 void burbujeo(int v[], unsigned t)
 {
     unsigned i = 1, j;
