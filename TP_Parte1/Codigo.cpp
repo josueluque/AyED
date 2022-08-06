@@ -57,7 +57,7 @@ int main()
 
 void cargarVectorCurso(Curso vc[], int t, bool matCursos[][COL], int cf, int cc)
 {
-    for (int i = 0; i < cc; i++)
+    for (int i = 0; i < t; i++)
     {
         cout << "ingrese código de curso, cero para finalizar: " << endl;
         cin >> vc[i].codigo;
@@ -86,7 +86,7 @@ void cargarVectorCurso(Curso vc[], int t, bool matCursos[][COL], int cf, int cc)
         }
         else
         {
-            i = cc;
+            i = t;
         }
     }
 }
