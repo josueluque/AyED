@@ -13,12 +13,14 @@ struct Parcial
 int main()
 {
     FILE *archParcial;
+    Parcial par;
     char nomArch[20];
     cout << "Nombre del archivo (con .dat)";
     cin >> nomArch;
-    Parcial par;
+
     // archParcial=fopen("Parcial1.dat","wb");
     archParcial = fopen(nomArch, "wb");
+
     if (archParcial == NULL)
         cout << "ERROR" << endl;
     else
