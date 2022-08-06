@@ -40,7 +40,9 @@ struct Curso
 void cargarVectorCurso(Curso vc[], int t, bool matCursos[][COL], int cf, int cc);
 void inicializar(bool matCurso[][COL], int cf, int cc);
 void mostrarPorFila(bool matCursos[][COL], int cf, int cc);
+void punto1(Curso vc[], int t, bool matCursos[][COL], int cf, int cc);
 void punto2(bool matCursos[][COL], int cf, int cc);
+void punto3(bool matCursos[][COL], int cf, int cc);
 
 int main()
 {
@@ -50,7 +52,10 @@ int main()
     inicializar(matCursos, FIL, COL);
     cargarVectorCurso(vc, 48, matCursos, FIL, COL);
     mostrarPorFila(matCursos, FIL, COL);
+    punto1(vc, 48, matCursos, FIL, COL);
     punto2(matCursos, FIL, COL);
+    cout << "Cursos en los que se imparten los 8 niveles: " << endl;
+    punto3(matCursos, FIL, COL);
 
     return 0;
 }
@@ -123,22 +128,55 @@ void inicializar(bool matCurso[][COL], int cf, int cc)
     Estos archivos deben estar ordenados por código de curso.
 */
 
-/*
-void punto1()
+void punto1(Curso vc[], int t, bool matCursos[][COL], int cf, int cc)
 {
     // Genero Archivos de los idiomas
+    /*
     char nombreCursoI[20] = "Ingles.dat";     // 1
     char nombreCursoF[20] = "Frances.dat";    // 2
     char nombreCursoP[20] = "Portugues.dat";  // 3
     char nombreCursoIta[20] = "Italiano.dat"; // 4
     char nombreCursoA[20] = "Aleman.dat";     // 5
     char nombreCursoC[20] = "Chino.dat";      // 6
-}
-*/
+    */
+    FILE *archCursos;
 
-/*
-    2) Informar por cada idioma la cantidad de cursos que se dictarán.
-*/
+    string vAux[6] = {"Ingles", "Frances", "Portugues", "Italiano", "Aleman", "Chino Mandarin"};
+
+    // CUIDADO CON ESTA PARTE XD
+    for (int i = 0; i < 2; i++)
+    {
+        for (int j = 0; j < cf; j++)
+        {
+            char nomArch[20] = "josue.dat";
+
+            archCursos = fopen(nomArch, "wb");
+            if (matCursos[j][i] == 1)
+            {
+
+                if (archCursos == NULL)
+                {
+                    cout << "ERROR" << endl;
+                }
+                else
+                {
+                    if (vc[j].nivel == j)
+                    {
+                        cin >> vc[j].codigo;
+                        cin >> vc[j].nivel;
+                        cin >> vc[j].cupo;
+                        cin >> vc[j].nombreDocente;
+                        cin >> vc[j].dniDocente;
+                        fwrite(&vc, sizeof(Curso), 1, archCursos);
+                    }
+                }
+            }
+        }
+        fclose(archCursos);
+    }
+}
+
+//  2) Informar por cada idioma la cantidad de cursos que se dictarán.
 
 void punto2(bool matCursos[][COL], int cf, int cc)
 {
@@ -156,5 +194,28 @@ void punto2(bool matCursos[][COL], int cf, int cc)
         cout << "Se van a dictar ";
         cout << cont;
         cout << " cursos de " + vAux[i] << endl;
+    }
+}
+
+//  3) Informar, si hay, los idiomas que tienen cursos en los ocho niveles.
+
+void punto3(bool matCursos[][COL], int cf, int cc)
+{
+    string vAux[6] = {"Inglés", "Frances", "Portugues", "Italiano", "Aleman", "Chino Mandarin"};
+    int cont;
+    for (int i = 0; i < cc; i++)
+    {
+        cont = 0;
+        for (int j = 0; j < cf; j++)
+        {
+            if (matCursos[j][i] == 1)
+            {
+                cont += 1;
+            }
+        }
+        if (cont == 8)
+        {
+            cout << " - " + vAux[i];
+        }
     }
 }
