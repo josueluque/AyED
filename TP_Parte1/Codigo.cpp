@@ -43,6 +43,7 @@ void mostrarPorFila(bool matCursos[][COL], int cf, int cc);
 void punto1(Curso vc[], int t, bool matCursos[][COL], int cf, int cc);
 void punto2(bool matCursos[][COL], int cf, int cc);
 void punto3(bool matCursos[][COL], int cf, int cc);
+void punto4(Curso vc[], bool matCursos[][COL], int cf, int cc);
 
 int main()
 {
@@ -52,10 +53,16 @@ int main()
     inicializar(matCursos, FIL, COL);
     cargarVectorCurso(vc, 48, matCursos, FIL, COL);
     mostrarPorFila(matCursos, FIL, COL);
-    punto1(vc, 48, matCursos, FIL, COL);
+    // punto1(vc, 48, matCursos, FIL, COL);
+
+    cout << "Lista de cursos que se dictarán: " << endl;
     punto2(matCursos, FIL, COL);
-    cout << "Cursos en los que se imparten los 8 niveles: " << endl;
+    cout << endl
+         << "Cursos en los que se imparten los 8 niveles: " << endl;
     punto3(matCursos, FIL, COL);
+    cout << endl
+         << "Niveles en los que no hay clases en los 6 idiomas: " << endl;
+    punto4(vc, matCursos, FIL, COL);
 
     return 0;
 }
@@ -128,17 +135,10 @@ void inicializar(bool matCurso[][COL], int cf, int cc)
     Estos archivos deben estar ordenados por código de curso.
 */
 
+/*
 void punto1(Curso vc[], int t, bool matCursos[][COL], int cf, int cc)
 {
     // Genero Archivos de los idiomas
-    /*
-    char nombreCursoI[20] = "Ingles.dat";     // 1
-    char nombreCursoF[20] = "Frances.dat";    // 2
-    char nombreCursoP[20] = "Portugues.dat";  // 3
-    char nombreCursoIta[20] = "Italiano.dat"; // 4
-    char nombreCursoA[20] = "Aleman.dat";     // 5
-    char nombreCursoC[20] = "Chino.dat";      // 6
-    */
     FILE *archCursos;
 
     string vAux[6] = {"Ingles", "Frances", "Portugues", "Italiano", "Aleman", "Chino Mandarin"};
@@ -175,9 +175,11 @@ void punto1(Curso vc[], int t, bool matCursos[][COL], int cf, int cc)
         fclose(archCursos);
     }
 }
+*/
 
 //  2) Informar por cada idioma la cantidad de cursos que se dictarán.
 
+/*
 void punto2(bool matCursos[][COL], int cf, int cc)
 {
     string vAux[6] = {"Inglés", "Frances", "Portugues", "Italiano", "Aleman", "Chino Mandarin"};
@@ -191,31 +193,75 @@ void punto2(bool matCursos[][COL], int cf, int cc)
                 cont += 1;
             }
         }
-        cout << "Se van a dictar ";
-        cout << cont;
-        cout << " cursos de " + vAux[i] << endl;
+        cout << vAux[i] + ": ";
+        cout << cont << endl;
     }
 }
+*/
 
 //  3) Informar, si hay, los idiomas que tienen cursos en los ocho niveles.
+// Probar verificar
 
 void punto3(bool matCursos[][COL], int cf, int cc)
 {
     string vAux[6] = {"Inglés", "Frances", "Portugues", "Italiano", "Aleman", "Chino Mandarin"};
-    int cont;
+    int contCursos = 0;
     for (int i = 0; i < cc; i++)
     {
-        cont = 0;
+        int cont = 0;
         for (int j = 0; j < cf; j++)
         {
             if (matCursos[j][i] == 1)
             {
                 cont += 1;
+                if (cont == 8)
+                {
+                    cout << " - " + vAux[i] << endl;
+                }
+            }
+            else
+            {
+                contCursos += 1;
+                j = cf;
             }
         }
-        if (cont == 8)
-        {
-            cout << " - " + vAux[i];
-        }
+    }
+    if (contCursos == 6)
+    {
+        cout << "Ninguno de los idiomas tienen cursos en los ocho niveles" << endl;
     }
 }
+
+//  4) Informar, si hay, los niveles en los que no se dictará ningún idioma.
+// Soluionar
+
+/*
+void punto4(Curso vc[], bool matCursos[][COL], int cf, int cc)
+{
+    int contNiveles = 0;
+    for (int i = 0; i < cf; i++)
+    {
+        int cont = 0;
+        for (int j = 0; j < cc; j++)
+        {
+            if (matCursos[i][j] == 0)
+            {
+                cont += 1;
+                if (cont == cc)
+                {
+                    cout << " - " + vc[i].nivel << endl;
+                }
+            }
+            else
+            {
+                contNiveles += 1;
+                j = cc;
+            }
+        }
+    }
+    if (contNiveles == 8)
+    {
+        cout << " - No hay niveles en donde no se dicte ningun idioma" << endl;
+    }
+}
+*/
