@@ -11,6 +11,7 @@ Ejercicios resueltos de la asignatura Algoritmos y Estructura de Datos - UTN.
 - Arrays.
 - Arrays Unidimensionales (Vectores).
 - Arrays Bidimensionales (Matrices).
+- Archivos
 
 ## Instalación :hammer_and_wrench:	
 
