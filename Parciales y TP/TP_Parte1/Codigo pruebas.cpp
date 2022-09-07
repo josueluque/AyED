@@ -1,29 +1,10 @@
 #include <iostream>
 #include <stdio.h>
+#include <string.h>
 #define FIL 8 // CANTIDAD DE NIVELES
 #define COL 6 // CANTIDAD DE IDIOMAS
 
 using namespace std;
-
-/*
-    APERTURA DE CURSOS PARA EL CICLO LECTIVO DE UN INSTITUTO DE IDIOMAS
-
-    Definición de los cursos que se dictarán en el ciclo lectivo.
-    En el instituto se dictan cursos de inglés, francés, portugués, italiano, alemán y chino mandarín.
-    Estos cursos pueden ser en 8 niveles de enseñanza diferentes, numerados del 1 al 8 según su
-    complejidad.
-    Por cada curso que se dictará este cuatrimestre, se ingresa por teclado:
-        Código del curso
-        Idioma
-        Nivel
-        Cupo (cantidad máxima de alumnos del curso)
-        Nombre y número de documento del docente a cargo
-    Puede haber un solo curso por idioma y por nivel. Rechazar el curso si ya existe un curso para ese
-    idioma para ese nivel.
-    Puede ser que para algún idioma no haya curso en algunos niveles.
-    Un mismo docente puede dictar varios cursos.
-    La finalización del ingreso de datos de cursos por teclado queda a criterio del grupo.
-*/
 
 // Datos del curso
 struct Curso
@@ -31,63 +12,93 @@ struct Curso
     int codigo;
     int idioma; // idioma por opciones
     int nivel;
-    int cupo; // Cantidad max de alumnos en el curso
-    string nombreDocente;
+};
+
+struct ArchCurso
+{
+    int codigo;
+    int nivel;
+    int cupo;
+    char nombreDocente[30];
     int dniDocente;
 };
 
 // Prototipo de funciones
-void ingresarCursos(Curso vc[], int t, bool matCursos[][COL]);
+int ingDatoLimitado(int desde, int hasta);
+void ingresarCursos(FILE *a, ArchCurso curso, Curso vc[], int t, bool matCursos[][COL], int cc);
 void inicializar(bool matCurso[][COL], int cf, int cc);
 void mostrarPorFila(bool matCursos[][COL], int cf, int cc);
-void punto1(Curso vc[], int t, bool matCursos[][COL], int cf, int cc);
-int ingDatoLimitado(int desde, int hasta);
 
 int main()
 {
+    FILE *archCursos;
+    ArchCurso curso;
     Curso vc[48];
     bool matCursos[FIL][COL];
 
     inicializar(matCursos, FIL, COL);
-    ingresarCursos(vc, 48, matCursos);
+    ingresarCursos(archCursos, curso, vc, 48, matCursos, COL);
     mostrarPorFila(matCursos, FIL, COL);
-    // punto1(vc, 48, matCursos, FIL, COL);
-
     return 0;
 }
 
-void ingresarCursos(Curso vc[], int t, bool matCursos[][COL])
+void ingresarCursos(FILE *a, ArchCurso curso, Curso vc[], int t, bool matCursos[][COL], int cc)
 {
+    string nom[6] = {"Ingles.dat", "Frances.dat", "Portugues.dat", "Italiano.dat", "Aleman.dat", "ChinoMandarin.dat"};
+    for (int j = 0; j < cc; j++)
+    {
+        char nomA[20];
+        strcpy(nomA, nom[j].c_str());
+        a = fopen(nomA, "wb");
+    }
+
     int i = 0;
     cout << "Ingrese código de curso, cero para finalizar: " << endl;
     cin >> vc[i].codigo;
+
     while (vc[i].codigo != 0 && i < t)
     {
         cout << "Ingrese idioma del curso: " << endl;
-        cout << "1) Inglés - 2)Fraces - 3)Portugues - 4)Italiano - 5)Aleman - 6)Chino Mandarin " << endl;
+        cout << "1) Inglés - 2)Frances - 3)Portugues - 4)Italiano - 5)Aleman - 6)Chino Mandarin " << endl;
         vc[i].idioma = ingDatoLimitado(1, 6);
-        cout << "Ingrese nivel del curso: " << endl;
-        vc[i].nivel = ingDatoLimitado(1, 8);
-        if (matCursos[vc[i].nivel - 1][vc[i].idioma - 1] != 1) // Para que no se repitan mismos cursos de mismo nivel
-        {
-            matCursos[vc[i].nivel - 1][vc[i].idioma - 1] = 1;
-            cout << "Ingrese cupo maximo del curso: " << endl;
-            cin >> vc[i].cupo;
-            cout << "Ingrese nombre del docente a cargo: " << endl;
-            cin >> vc[i].nombreDocente;
-            cout << "Ingrese dni del docente a cargo: " << endl;
-            cin >> vc[i].dniDocente;
-        }
+
+        char nomArch[20];
+        strcpy(nomArch, nom[vc[i].idioma - 1].c_str());
+
+        a = fopen(nomArch, "ab");
+
+        if (a == NULL)
+            cout << "ERROR" << endl;
         else
         {
-            cout << "¡CURSO YA EXISTENTE!" << endl;
+            cout << "Ingrese nivel del curso: " << endl;
+            vc[i].nivel = ingDatoLimitado(1, 8);
+            if (matCursos[vc[i].nivel - 1][vc[i].idioma - 1] != 1) // Para que no se repitan mismos cursos de mismo nivel
+            {
+                matCursos[vc[i].nivel - 1][vc[i].idioma - 1] = 1;
+                curso.codigo = vc[i].codigo;
+                curso.nivel = vc[i].nivel;
+                cout << "Ingrese cupo maximo del curso: " << endl;
+                cin >> curso.cupo;
+                cout << "Ingrese nombre del docente a cargo: " << endl;
+                cin >> curso.nombreDocente;
+                cout << "Ingrese dni del docente a cargo: " << endl;
+                cin >> curso.dniDocente;
+                fwrite(&curso, sizeof(ArchCurso), 1, a);
+            }
+            else
+            {
+                cout << "¡CURSO YA EXISTENTE!" << endl;
+            }
+
+            fclose(a);
+
+            i++;
+            cout << "Ingrese código de curso, cero para finalizar: " << endl;
+            cin >> vc[i].codigo;
         }
-        i++;
-        cout << "Ingrese código de curso, cero para finalizar: " << endl;
-        cin >> vc[i].codigo;
     }
 }
-
 int ingDatoLimitado(int desde, int hasta)
 {
     int dato;
@@ -115,59 +126,5 @@ void inicializar(bool matCurso[][COL], int cf, int cc)
 {
     for (int i = 0; i < cc; i++)
         for (int j = 0; j < cf; j++)
-            matCurso[i][j] = 0;
+            matCurso[j][i] = 0;
 }
-
-/*
-    1) Generar los archivos “Ingles.dat”, “Frances.dat”, “Protugues.dat”, “Italiano.dat”,
-    “Aleman.dat” y “Chino.dat” con los datos de los cursos que se dictarán de cada uno de los
-    idiomas.
-    Cada registro debe tener el siguiente diseño:
-        Código del curso
-        Nivel
-        Cupo
-        Nombre y número de documento del docente a cargo
-    Estos archivos deben estar ordenados por código de curso.
-*/
-
-/*
-void punto1(Curso vc[], int t, bool matCursos[][COL], int cf, int cc)
-{
-    // Genero Archivos de los idiomas
-    FILE *archCursos;
-
-    string vAux[6] = {"Ingles", "Frances", "Portugues", "Italiano", "Aleman", "Chino Mandarin"};
-
-    // CUIDADO CON ESTA PARTE XD
-    for (int i = 0; i < 2; i++)
-    {
-        for (int j = 0; j < cf; j++)
-        {
-            char nomArch[20] = "josue.dat";
-
-            archCursos = fopen(nomArch, "wb");
-            if (matCursos[j][i] == 1)
-            {
-
-                if (archCursos == NULL)
-                {
-                    cout << "ERROR" << endl;
-                }
-                else
-                {
-                    if (vc[j].nivel == j)
-                    {
-                        cin >> vc[j].codigo;
-                        cin >> vc[j].nivel;
-                        cin >> vc[j].cupo;
-                        cin >> vc[j].nombreDocente;
-                        cin >> vc[j].dniDocente;
-                        fwrite(&vc, sizeof(Curso), 1, archCursos);
-                    }
-                }
-            }
-        }
-        fclose(archCursos);
-    }
-}
-*/
