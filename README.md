@@ -1,17 +1,20 @@
 # Actividades de AyED :computer:
 
-Ejercicios resueltos, tp, parciales de la asignatura Algoritmos y Estructura de Datos - UTN.
+Ejercicios resueltos, tp y parciales de la asignatura Algoritmos y Estructura de Datos - UTN.
 
 ## Temas vistos :pencil:
 
-- Estructura Secuenial.
+- Estructura Secuencial.
 - Estructura de Decision.
 - Estructura de Repetición.
 - Funciones.
 - Arrays.
 - Arrays Unidimensionales (Vectores).
 - Arrays Bidimensionales (Matrices).
-- Archivos
+- Archivos.
+- Listas y Colas.
+- Estructuras Dinámicas.
+- Estructuras Combinadas.
 
 ## Instalación :hammer_and_wrench:	
 
