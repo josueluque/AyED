@@ -1,6 +1,6 @@
 # Actividades de AyED :computer:
 
-Ejercicios resueltos, tp, parciales de la asignatura Algoritmos y Estructura de Datos - UTN.
+Ejercicios resueltos, tp y parciales de la asignatura Algoritmos y Estructura de Datos - UTN.
 
 ## Temas vistos :pencil:
 
