@@ -4,14 +4,17 @@ Ejercicios resueltos, tp, parciales de la asignatura Algoritmos y Estructura de 
 
 ## Temas vistos :pencil:
 
-- Estructura Secuenial.
+- Estructura Secuencial.
 - Estructura de Decision.
 - Estructura de Repetición.
 - Funciones.
 - Arrays.
 - Arrays Unidimensionales (Vectores).
 - Arrays Bidimensionales (Matrices).
-- Archivos
+- Archivos.
+- Listas y Colas.
+- Estructuras Dinámicas.
+- Estructuras Combinadas.
 
 ## Instalación :hammer_and_wrench:	
 
