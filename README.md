@@ -15,6 +15,8 @@ Ejercicios resueltos, tp y parciales de la asignatura Algoritmos y Estructura de
 - Listas y Colas.
 - Estructuras Dinámicas.
 - Estructuras Combinadas.
+- Recursividad y Árbol biario.
+- Templates.
 
 ## Instalación :hammer_and_wrench:	
 
